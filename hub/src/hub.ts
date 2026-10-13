@@ -8,7 +8,7 @@ import { randomInt, randomUUID } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { homedir } from "node:os";
-import Bonjour from "bonjour-service";
+import Bonjour from "../vendor/bonjour-service/dist/index.js";
 import { Beacon, BEACON_PORT, lanAddresses } from "./beacon";
 import { PeerRegistry, type PeerAnnouncement, type PeerInfo } from "./peers";
 
