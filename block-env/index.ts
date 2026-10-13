@@ -22,7 +22,7 @@ export default {
       if (event.action === "shell") {
         for (const r of event.resources) {
           // ponytail: deny-all recursive scans without exclude; per-path parsing if false positives hurt
-          const recursive = /(?:^|\s)grep\s+[^;|&]*?(?:-[A-Za-z]*r[A-Za-z]*(?:\s|$|;|'|")|--recursive\b)/.test(r) || /\b(rg|ripgrep)\b/.test(r) || /\bfind\b/.test(r)
+          const recursive = /(?:^|\s)grep\s+[^;|&]*?(?:-[A-Za-z]*r[A-Za-z]*(?:\s|$|;|'|")|--recursive\b)/.test(r) || /\b(rg|ripgrep)\b/.test(r) || /(?<![.\w])find\b/.test(r)
           const excluded = /--exclude(?:-dir)?\s*=?\s*['"]?\.env/.test(r) || /(?:--glob|\s-g)\s+['"]?!?\.env/.test(r) || /-not\s+[^\n;|&]*?\.env/.test(r)
           if (recursive && !excluded) {
             event.effect = "deny"
